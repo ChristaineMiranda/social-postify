@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, UseGuards} from '@nestjs/common';
 import { PublicationService } from './publication.service';
-import { AuthGuard } from 'src/auth/authGuards/auth.guard';
+import { AuthGuard } from '../auth/authGuards/auth.guard';
 import { PublicationDTO } from './dto/publication.dto';
-import { UserRequest } from 'src/auth/decorators/user.decorator';
+import { UserRequest } from '../auth/decorators/user.decorator';
 import { User } from '@prisma/client';
 
 @UseGuards(AuthGuard)
