@@ -1,5 +1,9 @@
-import {signInDto} from '../../user/dto/signin-user.dto';
+import { IsNotEmpty, IsEmail, Length } from "class-validator";
+export class AuthLoginDTO{
+    @IsNotEmpty()
+    @IsEmail()
+    email: string
 
-export class AuthLoginDTO extends signInDto{
-
+    @Length(6,20)
+    password: string
 }

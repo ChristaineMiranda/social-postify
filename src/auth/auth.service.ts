@@ -5,6 +5,7 @@ import { PrismaService } from "../prisma/prisma.service";
 import { AuthRegisterDTO } from "./dto/auth-register.dto";
 import { UserService } from "./../user/user.service";
 import * as bcrypt from "bcrypt";
+import { UpdateUserDTO } from "./dto/update.dto";
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
     private usersService: UserService
   ) { }
 
-  async createToken(user: User) {
+  async createToken(user: User) : Promise<{ accessToken: string; }> {
     const token = this.jwtService.sign({
       name: user.name,
       email: user.email
@@ -35,7 +36,7 @@ export class AuthService {
     }
   }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string):Promise<{ accessToken: string; }> {
     const user = await this.prisma.user.findFirst({
       where: {
         email
@@ -52,7 +53,7 @@ export class AuthService {
     return this.createToken(user);
   }
 
-  async register(data: AuthRegisterDTO) {
+  async register(data: AuthRegisterDTO) :Promise<{ accessToken: string; }>{
     const user = await this.usersService.createUser(data);
     return this.createToken(user);
   }
@@ -70,4 +71,13 @@ export class AuthService {
         throw new BadRequestException(error);
       }
   }
+
+  async updateUser(userId: number, data: UpdateUserDTO) {
+    const userInfo = await this.usersService.updateUser(userId, data); 
+    return userInfo;  
+ }
+
+ async deleteUser(userId:number){
+   await this.usersService.deleteUser(userId);
+ }
 }

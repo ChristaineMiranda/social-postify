@@ -14,7 +14,7 @@ describe('PublicationController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [PublicationModule, AuthModule, UserModule],
+      imports: [AuthModule, UserModule],
       controllers: [PublicationController],
       providers: [PublicationService, PublicationRepository, UserService, UserRepository],
     }).compile();

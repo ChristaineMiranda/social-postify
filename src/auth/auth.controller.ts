@@ -1,7 +1,11 @@
-import { Body, Controller, Post, Get, UseGuards } from "@nestjs/common";
+import { Body, Controller, Post, Patch, UseGuards, Get, Delete } from "@nestjs/common";
 import { AuthLoginDTO } from "./dto/auth-login.dto";
 import { AuthRegisterDTO } from "./dto/auth-register.dto";
 import { AuthService } from "./auth.service";
+import { UpdateUserDTO } from "./dto/update.dto";
+import { User } from "@prisma/client";
+import { UserRequest } from "./decorators/user.decorator";
+import { AuthGuard } from "./authGuards/auth.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -17,6 +21,26 @@ export class AuthController {
   @Post("register")
   async register(@Body() body: AuthRegisterDTO) {
     return this.authService.register(body);
+  }
+
+  @UseGuards(AuthGuard)
+  @Patch("update")
+  updateUser(@Body() data: UpdateUserDTO, @UserRequest() user: User){
+    return this.authService.updateUser(user.id, data);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get("me")
+  getInfos(@UserRequest() user: User){
+    const {password, ...userInfo} = user;
+    return userInfo;
+  }
+
+  @UseGuards(AuthGuard)
+  @Delete("delete-account")
+  deleteUser(@UserRequest() user:User){
+    this.authService.deleteUser(user.id);
+    return "Usuário deletado com sucesso";
   }
 
 }
