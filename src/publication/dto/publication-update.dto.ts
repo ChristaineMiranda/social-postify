@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsDateString, IsOptional } from "class-validator";
+import { IsNotEmpty, IsString, IsDateString, IsOptional, IsBoolean } from "class-validator";
 export class PublicationUpdateDTO{
     
         @IsNotEmpty()
@@ -8,6 +8,11 @@ export class PublicationUpdateDTO{
         title:string;
         text:string;
         socialMedia:string;
+
+        @IsNotEmpty()
+        @IsBoolean()
+        @IsOptional()
+        published:boolean;
 
         @IsNotEmpty()
         @IsDateString()

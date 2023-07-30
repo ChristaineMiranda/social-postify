@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards, Patch, Delete, Param, ParseIntPipe} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, Patch, Delete, Param, ParseIntPipe, ParseBoolPipe} from '@nestjs/common';
 import { PublicationService } from './publication.service';
 import { AuthGuard } from '../auth/authGuards/auth.guard';
 import { PublicationDTO } from './dto/publication.dto';
@@ -29,5 +29,10 @@ export class PublicationController {
   @Delete(":id")
   deletePost(@UserRequest() user:User, @Param('id', ParseIntPipe)id:number){
     return this.publicationService.deletePost(user.id, id);
+  }
+
+  @Get(":status")
+  listByStatus(@UserRequest() user:User, @Param('status', ParseBoolPipe) published:boolean){
+    return this.publicationService.listByStatus(user.id, published);
   }
 }

@@ -31,4 +31,8 @@ export class PublicationRepository{
     async deletePost(id:number){
        this.prisma.publication.delete({where: {id}});
     }
+
+    async listByStatus(userId:number, published:boolean){
+        return await this.prisma.publication.findMany({where: {userId, published}})
+    }
 }

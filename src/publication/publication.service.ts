@@ -35,4 +35,8 @@ export class PublicationService {
     if(!postSelected) return {message: "Invalid postId", status: HttpStatus.NOT_FOUND};
     if(postSelected.userId !== userId) return{ message: 'Only authors can modify or delete posts', status: HttpStatus.UNAUTHORIZED};
   }
+
+  async listByStatus(userId:number, published:boolean){
+    return await this.publicationRepository.listByStatus(userId, published);
+  }
 }
