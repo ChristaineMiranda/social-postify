@@ -1,38 +1,117 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+# :alarm_clock: Social-Postify </h1>
+
+Seja bem-vindo ao Social-Postify, uma aplicação Nest.
+Esse é um sistema de gerenciamento de publicações em redes sociais, onde é possível agendar, controlar e monitorar as postagens em diversas plataformas de mídia social.
+Essa API dispõe de envio automático de emails informando sobre as postagens agendadas para o dia, uma ferramenta eficiente que permite acompanhar suas publicações agendadas.
+
+### :hammer: Funcionalidades do projeto
+
+### Autenticação
+
+- **Registro**: O usuário deve se cadastrar na plataforma para acessar suas funcionalidades.
+ 
+   `Método POST - Cadastro - endpoint: /auth/register`
+  
+   <p>Body da requisição:</p>
+  {
+   "name": "Nome do usuário",   
+   "email": "usuario@email.com",   
+   "password": "123456",   
+   "avatar": "link_de_uma_imagem"   
+  }
+
+- **Login:** O usuário deve fazer login na plataforma.
+
+  `Método POST - endpoint: /auth/login`
+
+   <p>Body da requisição:</p>
+   { "email": "usuario@email.com",   "password": "123456"}
+
+   Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas,      que são autenticadas
+
+   `Response:`
+
+  {
+
+  "accessToken": 
+  
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
+
+ }
+
+
+
+### Gerenciamento de postagens
+
+- **Registrar postagem**: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem.
+
+  `Método POST - Endpoint: /publication`
+
+  <p>Body da requisição:</p>
+  
+  {
+  "image": "link_da_imagem",
+  "title": "Titulo da postagem",
+  "text": "Texto da postagem",
+  "dateToPublish": "2023-10-14",
+  "socialMedia": "Linkedin"
+  }
+
+  Por padrão todas as postagens são armazenadas com status inicial published:false, que pode ser alterado posteriormente.
+ 
+- **Visualizar lista de postagens do usuário**: O usuário pode visualizar todas as postagens cadatradas, já realizadas ou não
+  
+  `Método GET - Endpoint: /publication`
+  
+   Response da requisição: array de publicações cadastradas
+  
+  <p>[
+  {
+    "id": 12,
+    "image": "imagem_da_postagem",
+    "title": "Titulo da postagem",
+    "text": "Texto da postagem",
+    "dateToPublish": "2023-10-14",
+    "published": false,
+    "socialMedia": "Linkedin",
+    "userId": 7,
+    "createdAt": "2023-08-01T01:25:52.706Z"
+  }
+    ]</p>
+
+ 
+- **Alterar postagem específicada pelo ID**: O id da publicação deve ser enviado como parâmetro da requisição. O usuário pode alterar somente os campos desejados, enviando somente eles.
+  
+  `Método PATCH - Endpoint: /publication/id`
+  <p>Body da requisição:</p>
+  <p>
+  {
+    "image": "nova_imagem_da_postagem",
+    "published": true    
+  }
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+- **Apagar postagem específicada pelo ID**: O id da publicação deve ser enviado como parâmetro da requisição.
+  
+  `Método DELETE - Endpoint: /publication/id`
+  
+- **Filtrar postagens pelo status de publicação**: O status em relação a efetivação da publicação deve ser enviado como parâmetro da requisição - **true** ou **false**.
+   
+  `Método GET - Endpoint: /publication/booleano`
+  
+  Se o parâmetro passado for "true" serão exibidas as publicações marcadas como **postadas**. Se o parâmetro for "false" são exibidas as marcadas como **não postadas**.
+  
+**``Envio automático de email de lembrete no dia da postagem cadastrada: A cada dia, às 7:00 do horário de Brasília, a aplicação varre o banco de dados e ao encontrar publicações agendadas para o dia vigente, encontra seus autores e envia um email para o endereço cadastrado na plataforma com as principais informações sobre a publicação.``**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+## Deploy da Aplicação com Render: :dash: 
+### Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### Para rodar o APP
 
 ```bash
 # development
@@ -45,29 +124,13 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+### Testes
 
 ```bash
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
