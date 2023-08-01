@@ -7,9 +7,10 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 
 ### Autenticação
 
-- `Registro e login`: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
-  **Método POST**
-  **Cadastro - endpoint: /auth/register**
+- **Registro e login**: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
+   `Método POST`
+  
+  `Cadastro - endpoint: /auth/register`
 <p>Body da requisição:</p>
 <p>{
    "name": "Nome do usuário",
@@ -18,8 +19,8 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
   "avatar": "link_de_uma_imagem"
 }</p>
 
-**Método POST**
-**Login endpoint: /auth/login**
+`Método POST`
+`Login endpoint: /auth/login`
 <p>Body da requisição:</p>
 <p>{
 	 "email": "usuario@email.com",
@@ -27,7 +28,7 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 }</p>
 
 Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas, que são autenticadas
-***Response:***
+`Response:`
 {
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
 }
