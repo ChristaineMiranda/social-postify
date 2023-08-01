@@ -1,9 +1,10 @@
-## :alarm_clock: Social-Postify </h1>
+# :alarm_clock: Social-Postify </h1>
 
 Seja bem-vindo ao Social-Postify, uma aplicação Nest.
-Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferramenta eficiente que permita agendar, controlar e monitorar as postagens em diversas plataformas de mídia social.
+Esse é um sistema de gerenciamento de publicações em redes sociais, onde é possível agendar, controlar e monitorar as postagens em diversas plataformas de mídia social.
+Essa API dispõe de envio automático de emails informando sobre as postagens agendadas para o dia, uma ferramenta eficiente que permite acompanhar suas publicações agendadas.
 
-## :hammer: Funcionalidades do projeto
+### :hammer: Funcionalidades do projeto
 
 ### Autenticação
 
@@ -42,7 +43,7 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 
 ### Gerenciamento de postagens
 
-- **Registrar publicação**: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem.
+- **Registrar postagem**: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem.
 
   `Método POST - Endpoint: /publication`
 
