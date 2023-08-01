@@ -5,33 +5,100 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 
 ## :hammer: Funcionalidades do projeto
 
-- `Autenticação`: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
-<p style="color: #0969DA; font-weight: bold;">Endpoint: /auth/register</p>
+### Autenticação
+
+- `Registro e login`: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
+  **Método POST**
+  **Cadastro - endpoint: /auth/register**
 <p>Body da requisição:</p>
-<p>{</p>
-<p>   "name": "Nome do usuário",</p>
-<p>   "email": "usuario@email.com",</p>
-<p>   "password": "123456",</p>
-<p>   "avatar": "link_de_uma_imagem"</p>
-<p>}</p>
+<p>{
+   "name": "Nome do usuário",
+   "email": "usuario@email.com",
+   "password": "123456",
+  "avatar": "link_de_uma_imagem"
+}</p>
+
+**Método POST**
+**Login endpoint: /auth/login**
+<p>Body da requisição:</p>
+<p>{
+	 "email": "usuario@email.com",
+   "password": "123456",
+}</p>
+
+Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas, que são autenticadas
+***Response:***
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
+}
 
 
 
+### Gerenciamento de postagens
 
-- `Registrar publicação`: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem
-- 
-- `Funcionalidade 2a`: descrição da funcionalidade 2a relacionada à funcionalidade 2
-- `Funcionalidade 3`: descrição da funcionalidade 3
+- `Registrar publicação`: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem.
+  **Método POST**
+  **Endpoint: /publication**
+  <p>Body da requisição:</p>
+  <p>{
+  "image": "link_da_imagem",
+  "title": "Titulo da postagem",
+  "text": "Texto da postagem",
+  "dateToPublish": "2023-10-14",
+  "socialMedia": "Linkedin"
+  }</p>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  Por padrão todas as postagens são armazenadas com status inicial published:false, que pode ser alterado posteriormente.
+ 
+- `Visualizar lista de postagens do usuário`: O usuário pode visualizar todas as postagens cadatradas, já realizadas ou não
+  **Método GET**
+  **Endpoint: /publication**
+  <p>[
+  {
+    "id": 12,
+    "image": "imagem_da_postagem",
+    "title": "Titulo da postagem",
+    "text": "Texto da postagem",
+    "dateToPublish": "2023-10-14",
+    "published": false,
+    "socialMedia": "Linkedin",
+    "userId": 7,
+    "createdAt": "2023-08-01T01:25:52.706Z"
+  }
+]</p>
 
-## Installation
+ 
+- `Alterar postagem específicada pelo ID`: O id da publicação deve ser enviado como parâmetro da requisição. O usuário pode alterar somente os campos desejados, enviando somente eles.
+  **Método PATCH**
+  **Endpoint: /publication/id**
+  <p>Body da requisição:</p>
+  <p>
+  {
+    "image": "nova_imagem_da_postagem",
+    "published": true    
+  }
+</p>
+
+- `Apagar postagem específicada pelo ID`: O id da publicação deve ser enviado como parâmetro da requisição.
+  **Método DELETE**
+  **Endpoint: /publication/id**
+  
+- `Filtrar postagens pelo status de publicação`: O status em relação a efetivação da publicação deve ser enviado como parâmetro da requisição - **true** ou **false**.
+  **Método GET**
+  **Endpoint: /publication/booleano**
+  Se o parâmetro passado for "true" serão exibidas as publicações marcadas como **postadas**. Se o parâmetro for "false" são exibidas as marcadas como **não postadas**.
+  
+## `Envio automático de email de lembrete no dia da postagem cadastrada`: A cada dia, às 7:00 do horário de Brasília, a aplicação varre o banco de dados e ao encontrar publicações agendadas para o dia vigente, encontra seus autores e envia um email para o endereço cadastrado na plataforma com as principais informações sobre a publicação.
+
+
+
+### Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### Para rodas o APP
 
 ```bash
 # development
@@ -44,7 +111,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+### Testes
 
 ```bash
 # unit tests
