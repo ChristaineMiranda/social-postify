@@ -104,7 +104,7 @@ Essa API dispõe de envio automático de emails informando sobre as postagens ag
 **``Envio automático de email de lembrete no dia da postagem cadastrada: A cada dia, às 7:00 do horário de Brasília, a aplicação varre o banco de dados e ao encontrar publicações agendadas para o dia vigente, encontra seus autores e envia um email para o endereço cadastrado na plataforma com as principais informações sobre a publicação.``**
 
 
-## Deploy da Aplicação com Render: :dash: 
+## Deploy da Aplicação com Render: https://social-postify-api.onrender.com :dash: 
 ### Instalação
 
 ```bash
