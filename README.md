@@ -7,14 +7,15 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 
 - `Autenticação`: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
 <div style="color: #663300; font-weight: bold;">
-Endpoint: /auth/register
-Body da requisição:
-{
+<p>Endpoint: /auth/register</p>
+<p>Body da requisição:</p>
+<p>{
    "name": "Nome do usuário",
 	 "email": "usuario@email.com",
    "password": "123456",
 	 "avatar": "link_de_uma_imagem"
 }
+	</p>
 </div>
 
 
