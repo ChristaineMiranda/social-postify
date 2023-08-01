@@ -8,6 +8,7 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 ### Autenticação
 
 - **Registro e login**: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
+  
    `Método POST`
   
   `Cadastro - endpoint: /auth/register`
@@ -20,15 +21,16 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 }</p>
 
 `Método POST`
+
 `Login endpoint: /auth/login`
+
 <p>Body da requisição:</p>
-<p>{
-	 "email": "usuario@email.com",
-   "password": "123456",
-}</p>
+<p>{ "email": "usuario@email.com",   "password": "123456"}</p>
 
 Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas, que são autenticadas
+
 `Response:`
+
 {
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
 }
@@ -37,10 +39,14 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
 
 ### Gerenciamento de postagens
 
-- `Registrar publicação`: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem.
-  **Método POST**
-  **Endpoint: /publication**
+- **Registrar publicação**: O usuário pode registrar em sua conta publicações que deseja ser lembrado de realizar no futuro, escolhendo o dia da postagem.
+
+  `Método POST`
+
+  `Endpoint: /publication`
+
   <p>Body da requisição:</p>
+  
   <p>{
   "image": "link_da_imagem",
   "title": "Titulo da postagem",
@@ -51,9 +57,12 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
 
   Por padrão todas as postagens são armazenadas com status inicial published:false, que pode ser alterado posteriormente.
  
-- `Visualizar lista de postagens do usuário`: O usuário pode visualizar todas as postagens cadatradas, já realizadas ou não
-  **Método GET**
-  **Endpoint: /publication**
+- **Visualizar lista de postagens do usuário**: O usuário pode visualizar todas as postagens cadatradas, já realizadas ou não
+  
+  `Método GET`
+  
+  `Endpoint: /publication`
+  
   <p>[
   {
     "id": 12,
@@ -69,9 +78,9 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
 ]</p>
 
  
-- `Alterar postagem específicada pelo ID`: O id da publicação deve ser enviado como parâmetro da requisição. O usuário pode alterar somente os campos desejados, enviando somente eles.
-  **Método PATCH**
-  **Endpoint: /publication/id**
+- **Alterar postagem específicada pelo ID**: O id da publicação deve ser enviado como parâmetro da requisição. O usuário pode alterar somente os campos desejados, enviando somente eles.
+  `Método PATCH`
+  `Endpoint: /publication/id`
   <p>Body da requisição:</p>
   <p>
   {
@@ -80,17 +89,19 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
   }
 </p>
 
-- `Apagar postagem específicada pelo ID`: O id da publicação deve ser enviado como parâmetro da requisição.
-  **Método DELETE**
-  **Endpoint: /publication/id**
+- **Apagar postagem específicada pelo ID**: O id da publicação deve ser enviado como parâmetro da requisição.
   
-- `Filtrar postagens pelo status de publicação`: O status em relação a efetivação da publicação deve ser enviado como parâmetro da requisição - **true** ou **false**.
+  `Método DELETE`
+  
+  `Endpoint: /publication/id`
+  
+- **Filtrar postagens pelo status de publicação**: O status em relação a efetivação da publicação deve ser enviado como parâmetro da requisição - **true** ou **false**.
 
   
-  **Método GET**
+  `Método GET`
 
   
-  **Endpoint: /publication/booleano**
+  `Endpoint: /publication/booleano`
 
   
   Se o parâmetro passado for "true" serão exibidas as publicações marcadas como **postadas**. Se o parâmetro for "false" são exibidas as marcadas como **não postadas**.
