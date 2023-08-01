@@ -3,20 +3,18 @@
 Seja bem-vindo ao Social-Postify, uma aplicação Nest.
 Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferramenta eficiente que permita agendar, controlar e monitorar as postagens em diversas plataformas de mídia social.
 
-# :hammer: Funcionalidades do projeto
+## :hammer: Funcionalidades do projeto
 
 - `Autenticação`: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
-<div style="color: #663300; font-weight: bold;">
-<p>Endpoint: /auth/register</p>
+<p style="color: #0969DA; font-weight: bold;">Endpoint: /auth/register</p>
 <p>Body da requisição:</p>
-<p>{
-   "name": "Nome do usuário",
-	 "email": "usuario@email.com",
-   "password": "123456",
-	 "avatar": "link_de_uma_imagem"
-}
-	</p>
-</div>
+<p>{</p>
+<p>   "name": "Nome do usuário",</p>
+<p>   "email": "usuario@email.com",</p>
+<p>   "password": "123456",</p>
+<p>   "avatar": "link_de_uma_imagem"</p>
+<p>}</p>
+
 
 
 
