@@ -7,8 +7,8 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
 
 ### Autenticação
 
-- **Registro**: O usuário deve se cadastrar e fazer login na plataforma para acessar suas funcionalidades. As rotas de cadastro e login seguem a forma a seguir
-  
+- **Registro**: O usuário deve se cadastrar na plataforma para acessar suas funcionalidades.
+ 
    `Método POST - Cadastro - endpoint: /auth/register`
   
    <p>Body da requisição:</p>
@@ -19,21 +19,24 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
    "avatar": "link_de_uma_imagem"   
   }
 
-**Login:**
+- **Login:** O usuário deve fazer login na plataforma.
 
-`Método POST - endpoint: /auth/login`
+  `Método POST - endpoint: /auth/login`
 
-<p>Body da requisição:</p>
-{ "email": "usuario@email.com",   "password": "123456"}
+   <p>Body da requisição:</p>
+ { "email": "usuario@email.com",   "password": "123456"}
 
-Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas, que são autenticadas
+ Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas, que 
+ são autenticadas
 
-`Response:`
+ `Response:`
 
-{
+ {
+
   "accessToken": 
+  
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
-}
+ }
 
 
 
@@ -59,6 +62,8 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
   
   `Método GET - Endpoint: /publication`
   
+   Response da requisição: array de publicações cadastradas
+  
   <p>[
   {
     "id": 12,
@@ -71,7 +76,7 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
     "userId": 7,
     "createdAt": "2023-08-01T01:25:52.706Z"
   }
-]</p>
+    ]</p>
 
  
 - **Alterar postagem específicada pelo ID**: O id da publicação deve ser enviado como parâmetro da requisição. O usuário pode alterar somente os campos desejados, enviando somente eles.
@@ -90,12 +95,12 @@ Em ambos a aplicação devolverá como resposta o token de autenticação JWT pa
   `Método DELETE - Endpoint: /publication/id`
   
 - **Filtrar postagens pelo status de publicação**: O status em relação a efetivação da publicação deve ser enviado como parâmetro da requisição - **true** ou **false**.
--   
+   
   `Método GET - Endpoint: /publication/booleano`
   
   Se o parâmetro passado for "true" serão exibidas as publicações marcadas como **postadas**. Se o parâmetro for "false" são exibidas as marcadas como **não postadas**.
   
-**``Envio automático de email de lembrete no dia da postagem cadastrada``: A cada dia, às 7:00 do horário de Brasília, a aplicação varre o banco de dados e ao encontrar publicações agendadas para o dia vigente, encontra seus autores e envia um email para o endereço cadastrado na plataforma com as principais informações sobre a publicação.**
+**``Envio automático de email de lembrete no dia da postagem cadastrada: A cada dia, às 7:00 do horário de Brasília, a aplicação varre o banco de dados e ao encontrar publicações agendadas para o dia vigente, encontra seus autores e envia um email para o endereço cadastrado na plataforma com as principais informações sobre a publicação.``**
 
 
 ## Deploy da Aplicação com Render: :dash: 
