@@ -2,10 +2,43 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PublicationRepository } from './publication.repository';
 import { PublicationDTO } from './dto/publication.dto';
 import { PublicationUpdateDTO } from './dto/publication-update.dto';
+import { Cron } from '@nestjs/schedule';
+import { UserRepository } from '../user/user.repository';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class PublicationService {
-  constructor(private readonly publicationRepository: PublicationRepository){}
+  constructor(private readonly publicationRepository: PublicationRepository,
+              private readonly userRepository: UserRepository,
+              private readonly mailerService: MailerService){}
+
+  @Cron('0 0 7 * * *')
+  async checkPostsDay(){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth()+1).padStart(2,'0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const date = `${year}-${month}-${day}`;
+    const todaysPost = await this.publicationRepository.findTodaysPost(date);
+    
+    if(todaysPost.length){
+        todaysPost.forEach(async (publication) => {
+          const author = await this.userRepository.findUserById(publication.userId);
+          this.mailerService.sendMail({
+            to:author.email,
+            from: 'christainemiranda.dev@gmail.com',
+            subject:'Lembrete de publicação - Social Postify',
+            html:`<h3>Olá! Esse é um email de envio automático do Social Postify, um sistema de gerenciamento de postagens desenvolvido por Christaine Miranda</h3>
+            <p>Você tem essa postagem agendada para hoje:</p>
+            <p>Títuto: ${publication.title}</p>
+            <p>Texto: ${publication.text}</p>
+            <p>A ser publicada em: ${publication.socialMedia}</p>
+            Para mais informações, verifique suas postagens agendadas!`,
+          });
+        });
+    }
+    
+  }
 
   async listAllPosts(userId:number) {
     return await this.publicationRepository.listAllPosts(userId);
