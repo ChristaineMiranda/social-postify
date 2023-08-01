@@ -37,7 +37,7 @@ Essa API dispõe de envio automático de emails informando sobre as postagens ag
   
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
 
- }
+   }
 
 
 
@@ -104,7 +104,8 @@ Essa API dispõe de envio automático de emails informando sobre as postagens ag
 **``Envio automático de email de lembrete no dia da postagem cadastrada: A cada dia, às 7:00 do horário de Brasília, a aplicação varre o banco de dados e ao encontrar publicações agendadas para o dia vigente, encontra seus autores e envia um email para o endereço cadastrado na plataforma com as principais informações sobre a publicação.``**
 
 
-## Deploy da Aplicação com Render: :dash: 
+## Deploy da Aplicação com Render::dash: 
+ https://social-postify-api.onrender.com
 ### Instalação
 
 ```bash
@@ -124,7 +125,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-### Testes
+### Testes - :construction: em construção :construction:
 
 ```bash
 # unit tests
