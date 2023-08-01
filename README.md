@@ -1,4 +1,4 @@
-:alarm_clock: <h1 align="center">Social-Postify </h1>
+## :alarm_clock: Social-Postify </h1>
 
 Seja bem-vindo ao Social-Postify, uma aplicação Nest.
 Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferramenta eficiente que permita agendar, controlar e monitorar as postagens em diversas plataformas de mídia social.
@@ -24,18 +24,18 @@ Esse é um sistema de gerenciamento de publicações em redes sociais, uma ferra
   `Método POST - endpoint: /auth/login`
 
    <p>Body da requisição:</p>
- { "email": "usuario@email.com",   "password": "123456"}
+   { "email": "usuario@email.com",   "password": "123456"}
 
- Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas, que 
- são autenticadas
+   Em ambos a aplicação devolverá como resposta o token de autenticação JWT para que o front-end inicialize a sessão e seja possível acessar as demais rotas,      que são autenticadas
 
- `Response:`
+   `Response:`
 
- {
+  {
 
   "accessToken": 
   
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY2hyaXN0YWluZSIsImVtYWlsIjoiY2hyaXN0YWluZS5taXJhbmRhQGdtYWlsLmNvbSIsImlhdCI6MTY5MDkwMzAzOCwiZXhwIjoxNjkxNTA3ODM4LCJhdWQiOiJ1c2VycyIsImlzcyI6IkRyaXZlbiIsInN1YiI6IjcifQ.FXwJxMUB8_BVapOIT5EdobR4Jgdb5ZOfYeUz9ap4a28"
+
  }
 
 
