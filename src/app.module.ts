@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { PublicationModule } from './publication/publication.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { PresentationModule } from './presentation/presentation.module';
 
 @Module({
   imports: [UserModule, PrismaModule, AuthModule, PublicationModule,
@@ -18,6 +19,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
         pass: process.env.PASSWORD_APP
       }
   }
-  })],
+  }),
+  PresentationModule],
 })
 export class AppModule {}
