@@ -12,7 +12,7 @@ export class PublicationService {
               private readonly userRepository: UserRepository,
               private readonly mailerService: MailerService){}
 
-  @Cron('* * * * * *')
+  @Cron('0 0 7 * * *')
   async checkPostsDay(){
     const today = new Date();
     const year = today.getFullYear();
