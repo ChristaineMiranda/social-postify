@@ -6,7 +6,7 @@ import { AuthModule } from '../auth/auth.module';
 import { UserModule } from '../user/user.module';
 import { UserService } from '../user/user.service';
 import { UserRepository } from '../user/user.repository';
-import { MAILER_OPTIONS, MailerModule, MailerService } from '@nestjs-modules/mailer';
+import { MailerModule, MailerService } from '@nestjs-modules/mailer';
 
 describe('PublicationController', () => {
   let controller: PublicationController;

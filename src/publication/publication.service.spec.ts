@@ -11,7 +11,7 @@ describe('PublicationService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports:[PrismaModule, UserModule, MailerModule],
+      imports:[PrismaModule, UserModule, MailerModule,], 
       providers: [PublicationService, PublicationRepository, UserRepository, MailerService ],
     }).compile();
 
